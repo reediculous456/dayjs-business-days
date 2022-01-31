@@ -13,7 +13,7 @@ This is a plugin for Day.js that allows for Date calculations to take place that
 
 ## Current CI/CD Status
 
-CI not yet implemented
+[![Node.js CI](https://github.com/reediculous456/dayjs-business-days/actions/workflows/node.js.yml/badge.svg)](https://github.com/reediculous456/dayjs-business-days/actions/workflows/node.js.yml) [![NPM Publish](https://github.com/reediculous456/dayjs-business-days/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/reediculous456/dayjs-business-days/actions/workflows/npm-publish.yml)
 
 ## Contents
 
