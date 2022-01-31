@@ -1,6 +1,6 @@
 import { Dayjs, PluginFunc } from 'dayjs';
 
-const plugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (options = {}, dayjsClass) => {
+const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (options = {}, dayjsClass) => {
   dayjsClass.prototype.isHoliday = function(this: Dayjs): boolean {
     if (!options.holidays) { return false; }
     if (options.holidays.includes(this.format(options.holidayFormat))) { return true; }
@@ -141,4 +141,4 @@ const plugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (options = {}, dayj
   };
 };
 
-export default plugin;
+export default BusinessDaysPlugin;
