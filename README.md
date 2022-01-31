@@ -1,4 +1,4 @@
-# dayjs-business-days
+# dayjs-business-days2
 
 This is a plugin for Day.js that allows for Date calculations to take place that only consider Business Days i.e Monday to Friday
 
@@ -7,7 +7,9 @@ This is a plugin for Day.js that allows for Date calculations to take place that
 - Calculate difference between dates in Business Days
 - Get Next/Prev Business Day
 - Get all Business Days/Weeks in a Month
+- Get the last Business Day of a month
 - Based off of [moment-business-days](https://www.npmjs.com/package/moment-business-days)
+- Forked from [dayjs-business-days](https://www.npmjs.com/package/dayjs-business-days) and converted to TypeScript
 
 ## Current CI/CD Status
 
@@ -15,13 +17,14 @@ CI not yet implemented
 
 ## Contents
 
-- [dayjs-business-days](#dayjs-business-days)
+- [dayjs-business-days2](#dayjs-business-days2)
   - [Current CI/CD Status](#current-cicd-status)
   - [Contents](#contents)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installing](#installing)
   - [Usage Guide](#usage-guide)
+    - [isHoliday() => Boolean](#isholiday--boolean)
     - [isBusinessDay() => Boolean](#isbusinessday--boolean)
     - [businessDaysAdd(number) => Day.js Object](#businessdaysaddnumber--dayjs-object)
     - [businessDaysSubtract(number) => Day.js Object](#businessdayssubtractnumber--dayjs-object)
@@ -29,8 +32,8 @@ CI not yet implemented
     - [nextBusinessDay() => Day.js Object](#nextbusinessday--dayjs-object)
     - [prevBusinessDay() => Day.js Object](#prevbusinessday--dayjs-object)
     - [businessDaysInMonth() => [Day.js Object]](#businessdaysinmonth--dayjs-object)
+    - [lastBusinessDayOfMonth() => Day.js Object](#lastbusinessdayofmonth--dayjs-object)
     - [businessWeeksInMonth() => [[Day.js Object]]](#businessweeksinmonth--dayjs-object)
-    - [isHoliday() => Boolean](#isholiday--boolean)
   - [Local Development and Contributing](#local-development-and-contributing)
 
 ## Getting Started
@@ -46,11 +49,11 @@ Day.js version 1.x installed
 You can install via Yarn or npm
 
 ```bash
-yarn add dayjs-business-days
+yarn add dayjs-business-days2
 ```
 
 ```bash
-npm install dayjs-business-days
+npm install dayjs-business-days2
 ```
 
 ## Usage Guide
@@ -62,6 +65,22 @@ import dayjs from 'dayjs';
 import dayjsBusinessDays from 'dayjs-business-days';
 
 dayjs.extend(dayjsBusinessDays);
+```
+
+### isHoliday() => Boolean
+
+Check if the date is a holiday. Returns **true** or **false**
+
+```javascript
+// Add holidays to plugin options
+const options = {
+  holidays: ['2020-12-25'],
+  holidayFormat: 'YYYY-MM-DD',
+};
+dayjs.extend(businessDays, options);
+
+// Christmas day is a Friday
+dayjs('2020-12-25').isHoliday(); // returns true
 ```
 
 ### isBusinessDay() => Boolean
@@ -134,6 +153,15 @@ dayjs('2020-12-25').businessDaysInMonth();
 // returns equivalent of [dayjs('2020-12-01'), dayjs('2020-12-02'), ...]
 ```
 
+### lastBusinessDayOfMonth() => Day.js Object
+
+Calculates the last Business Day of the month. Returns a **Day.js object**
+
+```javascript
+// 30th September 2021 is a Thursday and is the last business day of the month.
+dayjs('2021-09-01').lastBusinessDayOfMonth().format('DD/MM/YYYY'); // returns 30/09/2021
+```
+
 ### businessWeeksInMonth() => [[Day.js Object]]
 
 Calculates all of the business weeks and days in a given month. Returns an two dimensional array of **Day.js objects**
@@ -146,22 +174,6 @@ dayjs('2020-12-25').businessWeeksInMonth();
 //   [dayjs('2020-12-07'), dayjs('2020-12-08'), ...],
 //   ...
 // ]
-```
-
-### isHoliday() => Boolean
-
-Check if the date is a holiday. Returns **true** or **false**
-
-```javascript
-// Add holidays to plugin options
-const options = {
-  holidays: ['2020-12-25'],
-  holidayFormat: 'YYYY-MM-DD',
-};
-dayjs.extend(businessDays, options);
-
-// Christmas day is a Friday
-dayjs('2020-12-25').isHoliday(); // returns true
 ```
 
 ## Local Development and Contributing
