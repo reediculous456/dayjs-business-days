@@ -1,6 +1,32 @@
 import { Dayjs, PluginFunc } from 'dayjs';
 
-const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (options = {}, dayjsClass) => {
+const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (options = {}, dayjsClass, dayjsFactory) => {
+  const defaultWorkingWeekdays = [ 1, 2, 3, 4, 5 ];
+
+  dayjsFactory.getHolidays = function(): string[] {
+    return options.holidays || [];
+  };
+
+  dayjsFactory.setHolidays = function(holidays: string[]): void {
+    options.holidays = holidays;
+  };
+
+  dayjsFactory.getHolidayFormat = function(): string | undefined {
+    return options.holidayFormat;
+  };
+
+  dayjsFactory.setHolidayFormat = function(holidayFormat: string): void {
+    options.holidayFormat = holidayFormat;
+  };
+
+  dayjsFactory.getWorkingWeekdays = function(): number[] {
+    return options.workingWeekdays || defaultWorkingWeekdays;
+  };
+
+  dayjsFactory.setWorkingWeekdays = function(workingWeekdays: number[]): void {
+    options.workingWeekdays = workingWeekdays;
+  };
+
   dayjsClass.prototype.isHoliday = function(this: Dayjs): boolean {
     if (!options.holidays) { return false; }
     if (options.holidays.includes(this.format(options.holidayFormat))) { return true; }
@@ -9,7 +35,7 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
   };
 
   dayjsClass.prototype.isBusinessDay = function(this: Dayjs): boolean {
-    const workingWeekdays = [ 1, 2, 3, 4, 5 ];
+    const workingWeekdays = options.workingWeekdays || defaultWorkingWeekdays;
 
     if (this.isHoliday()) { return false; }
     if (workingWeekdays.includes(this.day())) { return true; }

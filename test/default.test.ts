@@ -112,4 +112,24 @@ describe(`businessDaysWithoutOptions`, () => {
     expect(dayjs(`2019-12-15`).businessWeeksInMonth()[1][4].valueOf())
       .toBe(dayjs(`2019-12-13`).valueOf());
   });
+
+  it(`Should return the last week day in a given month`, () => {
+    expect(dayjs(`2021-09-01`).lastBusinessDayOfMonth().valueOf())
+      .toBe(dayjs(`2021-09-30`).valueOf());
+  });
+
+  it(`Should return an empty array of holidays given no options`, () => {
+    expect(dayjs.getHolidays())
+      .toEqual([]);
+  });
+
+  it(`Should return undefined given no holidayFormat option`, () => {
+    expect(dayjs.getHolidayFormat())
+      .toEqual(undefined);
+  });
+
+  it(`Should return the default working weekdays given no options`, () => {
+    expect(dayjs.getWorkingWeekdays())
+      .toEqual([ 1, 2, 3, 4, 5 ]);
+  });
 });

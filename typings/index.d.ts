@@ -7,6 +7,7 @@ declare namespace plugin {
   interface BusinessDaysPluginOptions {
     holidays?: string[];
     holidayFormat?: string;
+    workingWeekdays?: number[];
   }
 
   interface BusinessDaysPlugin {
@@ -26,4 +27,11 @@ declare namespace plugin {
 declare module 'dayjs' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface, no-shadow
   interface Dayjs extends plugin.BusinessDaysPlugin { }
+
+  function getHolidays(): string[];
+  function setHolidays(holidays: string[]): void;
+  function getHolidayFormat(): string | undefined;
+  function setHolidayFormat(holidayFormat: string): void;
+  function getWorkingWeekdays(): number[];
+  function setWorkingWeekdays(workingWeekdays: number[]): void;
 }
