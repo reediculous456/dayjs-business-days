@@ -2,11 +2,9 @@
   "name": "dayjs-business-days",
   "version": "1.0.0",
   "description": "Day.js plugin to add support for calculating dates only accounting for Business days",
-  "main": "index.min.js",
-  "module": "index.min.js",
-  "files": [
-    "dist/**/*"
-  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "author": "Wesley Reed",
   "scripts": {
     "build": "tsc -p tsconfig.build.json && ts-cleaner",
     "lint": "eslint src test typings --ext .ts,.js",
@@ -28,8 +26,8 @@
     "businessdays",
     "workingdays"
   ],
-  "author": "Wesley Reed",
   "license": "MIT",
+  "files": [ "dist/**/*" ],
   "bugs": {
     "url": "https://github.com/reediculous456/dayjs-business-days/issues"
   },
