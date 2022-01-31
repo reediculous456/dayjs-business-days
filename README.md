@@ -21,9 +21,17 @@ CI not yet implemented
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installing](#installing)
-    - [Usage Guide](#usage-guide)
-  - [Local Development](#local-development)
-  - [Contributing](#contributing)
+  - [Usage Guide](#usage-guide)
+    - [isBusinessDay() => Boolean](#isbusinessday--boolean)
+    - [businessDaysAdd(number) => Day.js Object](#businessdaysaddnumber--dayjs-object)
+    - [businessDaysSubtract(number) => Day.js Object](#businessdayssubtractnumber--dayjs-object)
+    - [businessDiff(date) => Number](#businessdiffdate--number)
+    - [nextBusinessDay() => Day.js Object](#nextbusinessday--dayjs-object)
+    - [prevBusinessDay() => Day.js Object](#prevbusinessday--dayjs-object)
+    - [businessDaysInMonth() => [Day.js Object]](#businessdaysinmonth--dayjs-object)
+    - [businessWeeksInMonth() => [[Day.js Object]]](#businessweeksinmonth--dayjs-object)
+    - [isHoliday() => Boolean](#isholiday--boolean)
+  - [Local Development and Contributing](#local-development-and-contributing)
 
 ## Getting Started
 
@@ -31,7 +39,7 @@ The following guide will help you use the plugin with Day.js, and explain the pl
 
 ### Prerequisites
 
-Day.js version 1.8.x installed
+Day.js version 1.x installed
 
 ### Installing
 
@@ -158,11 +166,11 @@ dayjs('2020-12-25').isHoliday(); // returns true
 
 ## Local Development and Contributing
 
-We are more than happy to accept PRs for bugs, improvements or new features.
+I am more than happy to accept PRs for bugs, improvements or new features.
 Developing your own changes locally is easy, you just need to clone the repo
 
 ```bash
-git clone git@github.com/soar-tech/dayjs-business-days
+git clone git@github.com/reediculous456/dayjs-business-days
 
 cd dayjs-business-days
 ```
