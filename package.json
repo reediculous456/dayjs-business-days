@@ -14,9 +14,7 @@
     "test:coverage": "npm run test -- --coverage",
     "prepare": "husky install && npm run build",
     "prepublishOnly": "npm run build",
-    "preversion": "npm run lint",
-    "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "preversion": "npm run lint"
   },
   "repository": {
     "type": "git",
