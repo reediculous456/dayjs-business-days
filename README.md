@@ -68,7 +68,7 @@ You will need to import the plugin and activate it via the Day.js `.extend()` fu
 
 ```javascript
 import dayjs from 'dayjs';
-import dayjsBusinessDays from 'dayjs-business-days';
+import dayjsBusinessDays from 'dayjs-business-days2';
 
 dayjs.extend(dayjsBusinessDays);
 ```
