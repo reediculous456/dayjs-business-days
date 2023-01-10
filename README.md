@@ -1,5 +1,7 @@
 # dayjs-business-days2
 
+[![npm version](https://badge.fury.io/js/dayjs-business-days2.svg)](https://www.npmjs.com/package/dayjs-business-days2)
+
 This is a plugin for Day.js that allows for Date calculations to take place that only consider Business Days i.e Monday to Friday
 
 - Calculate if date is a Business Day
@@ -24,22 +26,22 @@ This is a plugin for Day.js that allows for Date calculations to take place that
     - [Prerequisites](#prerequisites)
     - [Installing](#installing)
   - [Usage Guide](#usage-guide)
-    - [isHoliday() => Boolean](#isholiday--boolean)
-    - [isBusinessDay() => Boolean](#isbusinessday--boolean)
-    - [businessDaysAdd(number) => Day.js Object](#businessdaysaddnumber--dayjs-object)
-    - [businessDaysSubtract(number) => Day.js Object](#businessdayssubtractnumber--dayjs-object)
-    - [businessDiff(date) => Number](#businessdiffdate--number)
-    - [nextBusinessDay() => Day.js Object](#nextbusinessday--dayjs-object)
-    - [prevBusinessDay() => Day.js Object](#prevbusinessday--dayjs-object)
-    - [businessDaysInMonth() => [Day.js Object]](#businessdaysinmonth--dayjs-object)
-    - [lastBusinessDayOfMonth() => Day.js Object](#lastbusinessdayofmonth--dayjs-object)
-    - [businessWeeksInMonth() => [[Day.js Object]]](#businessweeksinmonth--dayjs-object)
-    - [getHolidays() => [string]](#getholidays--string)
-    - [setHolidays() => void](#setholidays--void)
-    - [getHolidayFormat() => string](#getholidayformat--string)
-    - [setHolidayFormat() => void](#setholidayformat--void)
-    - [getWorkingWeekdays() => [number]](#getworkingweekdays--number)
-    - [setWorkingWeekdays() => void](#setworkingweekdays--void)
+    - [isHoliday() =\> Boolean](#isholiday--boolean)
+    - [isBusinessDay() =\> Boolean](#isbusinessday--boolean)
+    - [businessDaysAdd(number) =\> Day.js Object](#businessdaysaddnumber--dayjs-object)
+    - [businessDaysSubtract(number) =\> Day.js Object](#businessdayssubtractnumber--dayjs-object)
+    - [businessDiff(date) =\> Number](#businessdiffdate--number)
+    - [nextBusinessDay() =\> Day.js Object](#nextbusinessday--dayjs-object)
+    - [prevBusinessDay() =\> Day.js Object](#prevbusinessday--dayjs-object)
+    - [businessDaysInMonth() =\> \[Day.js Object\]](#businessdaysinmonth--dayjs-object)
+    - [lastBusinessDayOfMonth() =\> Day.js Object](#lastbusinessdayofmonth--dayjs-object)
+    - [businessWeeksInMonth() =\> \[\[Day.js Object\]\]](#businessweeksinmonth--dayjs-object)
+    - [getHolidays() =\> \[string\]](#getholidays--string)
+    - [setHolidays() =\> void](#setholidays--void)
+    - [getHolidayFormat() =\> string](#getholidayformat--string)
+    - [setHolidayFormat() =\> void](#setholidayformat--void)
+    - [getWorkingWeekdays() =\> \[number\]](#getworkingweekdays--number)
+    - [setWorkingWeekdays() =\> void](#setworkingweekdays--void)
   - [Local Development and Contributing](#local-development-and-contributing)
 
 ## Getting Started
