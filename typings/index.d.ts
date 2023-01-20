@@ -7,11 +7,14 @@ declare namespace plugin {
   interface BusinessDaysPluginOptions {
     holidays?: string[];
     holidayFormat?: string;
+    additionalWorkingDays?: string[];
+    additionalWorkingDayFormat?: string;
     workingWeekdays?: number[];
   }
 
   interface BusinessDaysPlugin {
     isHoliday(): boolean;
+    isAdditionalWorkingDay(): boolean;
     isBusinessDay(): boolean;
     businessDaysAdd(days: number): Dayjs;
     businessDaysSubtract(days: number): Dayjs;
@@ -32,6 +35,10 @@ declare module 'dayjs' {
   function setHolidays(holidays: string[]): void;
   function getHolidayFormat(): string | undefined;
   function setHolidayFormat(holidayFormat: string): void;
+  function getAdditionalWorkingDays(): string[];
+  function setAdditionalWorkingDays(additionalWorkingDays: string[]): void;
+  function getAdditionalWorkingDayFormat(): string | undefined;
+  function setAdditionalWorkingDayFormat(additionalWorkingDayFormat: string): void;
   function getWorkingWeekdays(): number[];
   function setWorkingWeekdays(workingWeekdays: number[]): void;
 }

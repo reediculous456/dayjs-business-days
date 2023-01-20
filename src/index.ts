@@ -19,6 +19,22 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     options.holidayFormat = holidayFormat;
   };
 
+  dayjsFactory.getAdditionalWorkingDays = function(): string[] {
+    return options.additionalWorkingDays || [];
+  };
+
+  dayjsFactory.setAdditionalWorkingDays = function(additionalWorkingDays: string[]): void {
+    options.additionalWorkingDays = additionalWorkingDays;
+  };
+
+  dayjsFactory.getAdditionalWorkingDayFormat = function(): string | undefined {
+    return options.additionalWorkingDayFormat;
+  };
+
+  dayjsFactory.setAdditionalWorkingDayFormat = function(additionalWorkingDayFormat: string): void {
+    options.additionalWorkingDayFormat = additionalWorkingDayFormat;
+  };
+
   dayjsFactory.getWorkingWeekdays = function(): number[] {
     return options.workingWeekdays || defaultWorkingWeekdays;
   };
@@ -34,10 +50,18 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     return false;
   };
 
+  dayjsClass.prototype.isAdditionalWorkingDay = function(this: Dayjs): boolean {
+    if (!options.additionalWorkingDays) { return false; }
+    if (options.additionalWorkingDays.includes(this.format(options.additionalWorkingDayFormat))) { return true; }
+
+    return false;
+  };
+
   dayjsClass.prototype.isBusinessDay = function(this: Dayjs): boolean {
     const workingWeekdays = options.workingWeekdays || defaultWorkingWeekdays;
 
     if (this.isHoliday()) { return false; }
+    if (this.isAdditionalWorkingDay()) { return true; }
     if (workingWeekdays.includes(this.day())) { return true; }
 
     return false;

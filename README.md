@@ -27,6 +27,7 @@ This is a plugin for Day.js that allows for Date calculations to take place that
     - [Installing](#installing)
   - [Usage Guide](#usage-guide)
     - [isHoliday() =\> Boolean](#isholiday--boolean)
+    - [isAdditionalWorkingDay() =\> Boolean](#isadditionalworkingday--boolean)
     - [isBusinessDay() =\> Boolean](#isbusinessday--boolean)
     - [businessDaysAdd(number) =\> Day.js Object](#businessdaysaddnumber--dayjs-object)
     - [businessDaysSubtract(number) =\> Day.js Object](#businessdayssubtractnumber--dayjs-object)
@@ -40,6 +41,10 @@ This is a plugin for Day.js that allows for Date calculations to take place that
     - [setHolidays() =\> void](#setholidays--void)
     - [getHolidayFormat() =\> string](#getholidayformat--string)
     - [setHolidayFormat() =\> void](#setholidayformat--void)
+    - [getAdditionalWorkingDays() -\> \[string\]](#getadditionalworkingdays--string)
+    - [setAdditionalWorkingDays() =\> void](#setadditionalworkingdays--void)
+    - [getAdditionalWorkingDayFormat() =\> string](#getadditionalworkingdayformat--string)
+    - [setAdditionalWorkingDayFormat() =\> void](#setadditionalworkingdayformat--void)
     - [getWorkingWeekdays() =\> \[number\]](#getworkingweekdays--number)
     - [setWorkingWeekdays() =\> void](#setworkingweekdays--void)
   - [Local Development and Contributing](#local-development-and-contributing)
@@ -89,6 +94,22 @@ dayjs.extend(businessDays, options);
 
 // Christmas day is a Friday
 dayjs(`2020-12-25`).isHoliday(); // returns true
+```
+
+### isAdditionalWorkingDay() => Boolean
+
+Check if the date is an additional working day. Returns **true** or **false**
+
+```javascript
+// Add holidays to plugin options
+const options = {
+  additionalWorkingDays: [`2023-01-28`],
+  additionalWorkingDayFormat: `YYYY-MM-DD`,
+};
+dayjs.extend(businessDays, options);
+
+// Check
+dayjs(`2023-01-28`).isAdditionalWorkingDay(); // returns true
 ```
 
 ### isBusinessDay() => Boolean
@@ -226,6 +247,50 @@ Sets the holiday list to the given a **string**
 
 ```javascript
 dayjs.setHolidayFormat(`MM-DD-YYYY`);
+```
+
+### getAdditionalWorkingDays() => [string]
+
+Returns an array of **strings** representing the currently set additional working days
+
+```javascript
+const options = {
+  additionalWorkingDays: [`2023-01-28`],
+  additionalWorkingDayFormat: `YYYY-MM-DD`,
+};
+dayjs.extend(businessDays, options);
+
+dayjs.getAdditionalWorkingDays(); // returns [ `2023-01-28` ]
+```
+
+### setAdditionalWorkingDays() => void
+
+Sets the additional working day list to the given array of **strings**
+
+```javascript
+dayjs.setAdditionalWorkingDays([ `2023-01-28`, `2023-01-29` ]);
+```
+
+### getAdditionalWorkingDayFormat() => string
+
+Returns a **string** representing the currently expected additional working day format
+
+```javascript
+const options = {
+  additionalWorkingDays: [`2023-01-28`],
+  additionalWorkingDayFormat: `YYYY-MM-DD`,
+};
+dayjs.extend(businessDays, options);
+
+dayjs.getAdditionalWorkingDayFormat(); // returns [ `YYYY-MM-DD` ]
+```
+
+### setAdditionalWorkingDayFormat() => void
+
+Sets the additional working day format to the given a **string**
+
+```javascript
+dayjs.setAdditionalWorkingDayFormat(`MM-DD-YYYY`);
 ```
 
 ### getWorkingWeekdays() => [number]
