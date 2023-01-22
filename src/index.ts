@@ -3,6 +3,14 @@ import { Dayjs, PluginFunc } from 'dayjs';
 const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (options = {}, dayjsClass, dayjsFactory) => {
   const defaultWorkingWeekdays = [ 1, 2, 3, 4, 5 ];
 
+  dayjsFactory.getWorkingWeekdays = function(): number[] {
+    return options.workingWeekdays || defaultWorkingWeekdays;
+  };
+
+  dayjsFactory.setWorkingWeekdays = function(workingWeekdays: number[]): void {
+    options.workingWeekdays = workingWeekdays;
+  };
+
   dayjsFactory.getHolidays = function(): string[] {
     return options.holidays || [];
   };
@@ -35,24 +43,9 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     options.additionalWorkingDayFormat = additionalWorkingDayFormat;
   };
 
-  dayjsFactory.getWorkingWeekdays = function(): number[] {
-    return options.workingWeekdays || defaultWorkingWeekdays;
-  };
-
-  dayjsFactory.setWorkingWeekdays = function(workingWeekdays: number[]): void {
-    options.workingWeekdays = workingWeekdays;
-  };
-
   dayjsClass.prototype.isHoliday = function(this: Dayjs): boolean {
     if (!options.holidays) { return false; }
     if (options.holidays.includes(this.format(options.holidayFormat))) { return true; }
-
-    return false;
-  };
-
-  dayjsClass.prototype.isAdditionalWorkingDay = function(this: Dayjs): boolean {
-    if (!options.additionalWorkingDays) { return false; }
-    if (options.additionalWorkingDays.includes(this.format(options.additionalWorkingDayFormat))) { return true; }
 
     return false;
   };
@@ -63,6 +56,13 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     if (this.isHoliday()) { return false; }
     if (this.isAdditionalWorkingDay()) { return true; }
     if (workingWeekdays.includes(this.day())) { return true; }
+
+    return false;
+  };
+
+  dayjsClass.prototype.isAdditionalWorkingDay = function(this: Dayjs): boolean {
+    if (!options.additionalWorkingDays) { return false; }
+    if (options.additionalWorkingDays.includes(this.format(options.additionalWorkingDayFormat))) { return true; }
 
     return false;
   };
