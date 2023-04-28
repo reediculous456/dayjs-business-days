@@ -37,7 +37,8 @@
   "license": "MIT",
   "files": [
     "dist/**/*",
-    "typings/**/*"
+    "typings/**/*",
+    "src/**/*"
   ],
   "bugs": {
     "url": "https://github.com/reediculous456/dayjs-business-days/issues"
