@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import businessDays from '../src';
+import businessDays from '../src/index.ts';
 
 const laborDay = `2020-09-07`;
 const january27th = `2023-01-27`;
