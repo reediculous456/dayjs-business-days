@@ -15,7 +15,7 @@
   "type": "module",
   "author": "Wesley Reed",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --clean",
+    "build": "tsup src/index.ts --format cjs,esm --sourcemap --clean --legacy-output",
     "lint": "eslint src test typings --ext .ts,.js",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest --config ./jest.config.js",
