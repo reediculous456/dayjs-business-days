@@ -16,7 +16,7 @@
   "author": "Wesley Reed",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --sourcemap --clean",
-    "lint": "eslint src test typings --ext .ts,.js",
+    "lint": "eslint src test typings",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest --config ./jest.config.js",
     "test:watch": "npm run test -- --watchAll",
@@ -57,19 +57,22 @@
     "dayjs": "^1.11.13"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.36.0",
+    "@stylistic/eslint-plugin": "^5.4.0",
     "@swc/core": "^1.12.0",
     "@types/jest": "^29.5.14",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
     "audit-ci": "^7.1.0",
-    "eslint": "^8.57.1",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-sort-destructure-keys": "^2.0.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-import-quotes": "^0.0.1",
+    "eslint-plugin-sort-keys-custom-order": "^2.2.1",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "npm-check-updates": "^17.1.18",
     "ts-jest": "^29.3.4",
     "tsup": "^8.5.0",
-    "typescript": "^5.8.3"
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.45.0"
   }
 }

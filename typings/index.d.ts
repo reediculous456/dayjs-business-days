@@ -5,10 +5,10 @@ export as namespace plugin
 export = plugin;
 declare namespace plugin {
   interface BusinessDaysPluginOptions {
-    holidays?: string[];
-    holidayFormat?: string;
-    additionalWorkingDays?: string[];
     additionalWorkingDayFormat?: string;
+    additionalWorkingDays?: string[];
+    holidayFormat?: string;
+    holidays?: string[];
     workingWeekdays?: number[];
   }
 
@@ -28,7 +28,7 @@ declare namespace plugin {
 }
 
 declare module 'dayjs' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface, no-shadow
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface Dayjs extends plugin.BusinessDaysPlugin { }
 
   function getWorkingWeekdays(): number[];

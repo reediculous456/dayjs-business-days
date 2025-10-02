@@ -44,8 +44,12 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
   };
 
   dayjsClass.prototype.isHoliday = function(this: Dayjs): boolean {
-    if (!options.holidays) { return false; }
-    if (options.holidays.includes(this.format(options.holidayFormat))) { return true; }
+    if (!options.holidays) {
+      return false;
+    }
+    if (options.holidays.includes(this.format(options.holidayFormat))) {
+      return true;
+    }
 
     return false;
   };
@@ -53,16 +57,26 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
   dayjsClass.prototype.isBusinessDay = function(this: Dayjs): boolean {
     const workingWeekdays = options.workingWeekdays || defaultWorkingWeekdays;
 
-    if (this.isHoliday()) { return false; }
-    if (this.isAdditionalWorkingDay()) { return true; }
-    if (workingWeekdays.includes(this.day())) { return true; }
+    if (this.isHoliday()) {
+      return false;
+    }
+    if (this.isAdditionalWorkingDay()) {
+      return true;
+    }
+    if (workingWeekdays.includes(this.day())) {
+      return true;
+    }
 
     return false;
   };
 
   dayjsClass.prototype.isAdditionalWorkingDay = function(this: Dayjs): boolean {
-    if (!options.additionalWorkingDays) { return false; }
-    if (options.additionalWorkingDays.includes(this.format(options.additionalWorkingDayFormat))) { return true; }
+    if (!options.additionalWorkingDays) {
+      return false;
+    }
+    if (options.additionalWorkingDays.includes(this.format(options.additionalWorkingDayFormat))) {
+      return true;
+    }
 
     return false;
   };
@@ -75,7 +89,9 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     while (daysRemaining > 0) {
       currentDay = currentDay.add(numericDirection, `d`);
 
-      if (currentDay.isBusinessDay()) { daysRemaining -= 1; }
+      if (currentDay.isBusinessDay()) {
+        daysRemaining -= 1;
+      }
     }
 
     return currentDay;
@@ -99,10 +115,14 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
 
     let daysBetween = 0;
 
-    if (start.isSame(end)) { return daysBetween; }
+    if (start.isSame(end)) {
+      return daysBetween;
+    }
 
     while (start < end) {
-      if (start.isBusinessDay()) { daysBetween += 1; }
+      if (start.isBusinessDay()) {
+        daysBetween += 1;
+      }
 
       start = start.add(1, `d`);
     }
@@ -118,7 +138,9 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     while (loopIndex < searchLimit) {
       currentDay = currentDay.add(1, `day`);
 
-      if (currentDay.isBusinessDay()) { break; }
+      if (currentDay.isBusinessDay()) {
+        break;
+      }
       loopIndex += 1;
     }
 
@@ -133,7 +155,9 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     while (loopIndex < searchLimit) {
       currentDay = currentDay.subtract(1, `day`);
 
-      if (currentDay.isBusinessDay()) { break; }
+      if (currentDay.isBusinessDay()) {
+        break;
+      }
       loopIndex += 1;
     }
 
@@ -141,7 +165,9 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
   };
 
   dayjsClass.prototype.businessDaysInMonth = function(this: Dayjs): Dayjs[] {
-    if (!this.isValid()) { return []; }
+    if (!this.isValid()) {
+      return [];
+    }
 
     let currentDay = this.clone().startOf(`month`);
     const monthEnd = this.clone().endOf(`month`);
@@ -149,11 +175,15 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     let monthComplete = false;
 
     while (!monthComplete) {
-      if (currentDay.isBusinessDay()) { businessDays.push(currentDay.clone()); }
+      if (currentDay.isBusinessDay()) {
+        businessDays.push(currentDay.clone());
+      }
 
       currentDay = currentDay.add(1, `day`);
 
-      if (currentDay.isAfter(monthEnd)) { monthComplete = true; }
+      if (currentDay.isAfter(monthEnd)) {
+        monthComplete = true;
+      }
     }
 
     return businessDays;
@@ -166,7 +196,9 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
   };
 
   dayjsClass.prototype.businessWeeksInMonth = function(this: Dayjs): Dayjs[][] {
-    if (!this.isValid()) { return []; }
+    if (!this.isValid()) {
+      return [];
+    }
 
     let currentDay = this.clone().startOf(`month`);
     const monthEnd = this.clone().endOf(`month`);
@@ -175,7 +207,9 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     let monthComplete = false;
 
     while (!monthComplete) {
-      if (currentDay.isBusinessDay()) { businessDays.push(currentDay.clone()); }
+      if (currentDay.isBusinessDay()) {
+        businessDays.push(currentDay.clone());
+      }
 
       if (currentDay.day() === 5 || currentDay.isSame(monthEnd, `day`)) {
         businessWeeks.push(businessDays);
@@ -184,7 +218,9 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
 
       currentDay = currentDay.add(1, `day`);
 
-      if (currentDay.isAfter(monthEnd)) { monthComplete = true; }
+      if (currentDay.isAfter(monthEnd)) {
+        monthComplete = true;
+      }
     }
 
     return businessWeeks;
