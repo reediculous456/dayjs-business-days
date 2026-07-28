@@ -47,6 +47,7 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     if (!options.holidays) {
       return false;
     }
+
     if (options.holidays.includes(this.format(options.holidayFormat))) {
       return true;
     }
@@ -60,9 +61,11 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     if (this.isHoliday()) {
       return false;
     }
+
     if (this.isAdditionalWorkingDay()) {
       return true;
     }
+
     if (workingWeekdays.includes(this.day())) {
       return true;
     }
@@ -74,6 +77,7 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     if (!options.additionalWorkingDays) {
       return false;
     }
+
     if (options.additionalWorkingDays.includes(this.format(options.additionalWorkingDayFormat))) {
       return true;
     }
@@ -135,12 +139,14 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     let currentDay = this.clone();
 
     let loopIndex = 1;
+
     while (loopIndex < searchLimit) {
       currentDay = currentDay.add(1, `day`);
 
       if (currentDay.isBusinessDay()) {
         break;
       }
+
       loopIndex += 1;
     }
 
@@ -152,12 +158,14 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
     let currentDay = this.clone();
 
     let loopIndex = 1;
+
     while (loopIndex < searchLimit) {
       currentDay = currentDay.subtract(1, `day`);
 
       if (currentDay.isBusinessDay()) {
         break;
       }
+
       loopIndex += 1;
     }
 
@@ -192,6 +200,7 @@ const BusinessDaysPlugin: PluginFunc<plugin.BusinessDaysPluginOptions> = (option
   dayjsClass.prototype.lastBusinessDayOfMonth = function(this: Dayjs): Dayjs {
     const businessDays = this.businessDaysInMonth();
     const lastBusinessDay = businessDays[businessDays.length - 1];
+
     return lastBusinessDay;
   };
 
