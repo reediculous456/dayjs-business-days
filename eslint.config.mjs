@@ -1,15 +1,16 @@
 import js from '@eslint/js';
-import { defineConfig } from 'eslint/config';
-import tseslint from 'typescript-eslint';
+import stylistic from '@stylistic/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import importQuotes from 'eslint-plugin-import-quotes';
-import sortKeysCustomOrder from 'eslint-plugin-sort-keys-custom-order';
+import perfectionist from 'eslint-plugin-perfectionist';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import stylistic from '@stylistic/eslint-plugin';
+import tseslint from 'typescript-eslint';
 
 export default defineConfig(
   js.configs.recommended,
   stylistic.configs.recommended,
+  perfectionist.configs[`recommended-alphabetical`],
   {
     ignores: [ `**/dist/`, `**/build/` ],
   },
@@ -19,6 +20,7 @@ export default defineConfig(
       ecmaVersion: `latest`,
       globals: {
         ...globals.node,
+        ...globals.jest,
       },
       sourceType: `module`,
     },
@@ -29,7 +31,6 @@ export default defineConfig(
       '@stylistic': stylistic,
       "import": importPlugin,
       "import-quotes": importQuotes,
-      "sort-keys-custom-order": sortKeysCustomOrder,
     },
     rules: {
       "@stylistic/array-bracket-newline": [ 2, `consistent` ],
@@ -80,6 +81,19 @@ export default defineConfig(
       }],
       "@stylistic/object-curly-spacing": [ 2, `always` ],
       "@stylistic/operator-linebreak": [ 2, `after` ],
+      "@stylistic/padding-line-between-statements": [ 2, {
+        blankLine: `always`,
+        next: `*`,
+        prev: `block-like`,
+      }, {
+        blankLine: `always`,
+        next: `block-like`,
+        prev: `*`,
+      }, {
+        blankLine: `always`,
+        next: `return`,
+        prev: `*`,
+      }],
       "@stylistic/quote-props": [ 2, `consistent-as-needed`, {
         numbers: true,
       }],
@@ -119,7 +133,7 @@ export default defineConfig(
         `Function`,
       ],
       "import-quotes/import-quotes": [ 2, `single` ],
-      "import/order": 2,
+      "import/newline-after-import": 2,
       "max-classes-per-file": [ 2, 1 ],
       "no-array-constructor": 2,
       "no-caller": 2,
@@ -160,6 +174,76 @@ export default defineConfig(
       "object-shorthand": 2,
       "one-var": [ 2, `never` ],
       "operator-assignment": 2,
+      "perfectionist/sort-interfaces": [
+        2,
+        {
+          customGroups: [
+            {
+              elementNamePattern: `^id$`,
+              groupName: `id`,
+            },
+          ],
+          groups: [ `id`, `unknown` ],
+        },
+        {
+          type: `alphabetical`,
+        },
+      ],
+      "perfectionist/sort-jsx-props": [
+        2,
+        {
+          customGroups: [
+            {
+              elementNamePattern: `^I$`,
+              groupName: `I`,
+            },
+            {
+              elementNamePattern: `^(a|an)$`,
+              groupName: `a-an`,
+            },
+          ],
+          groups: [ `I`, `a-an`, `unknown` ],
+          useConfigurationIf: {
+            tagMatchesPattern: `^Can$`,
+          },
+        },
+        {
+          type: `alphabetical`,
+        },
+      ],
+      "perfectionist/sort-object-types": [
+        2,
+        {
+          customGroups: [
+            {
+              elementNamePattern: `^id$`,
+              groupName: `id`,
+            },
+          ],
+          groups: [ `id`, `unknown` ],
+        },
+        {
+          type: `alphabetical`,
+        },
+      ],
+      "perfectionist/sort-objects": [
+        2,
+        {
+          customGroups: [
+            {
+              elementNamePattern: `^id$`,
+              groupName: `id`,
+            },
+          ],
+          groups: [ `id`, `unknown` ],
+        },
+        {
+          type: `alphabetical`,
+        },
+      ],
+      "perfectionist/sort-union-types": [ 2, {
+        groups: [ `unknown`, `nullish` ],
+      }],
       "prefer-arrow-callback": 2,
       "prefer-const": 2,
       "prefer-destructuring": 2,
@@ -167,16 +251,6 @@ export default defineConfig(
       "prefer-object-spread": 2,
       "prefer-template": 2,
       "require-await": 2,
-      "sort-imports": [ 2, {
-        ignoreCase: true,
-        ignoreDeclarationSort: true,
-      }],
-      "sort-keys-custom-order/export-object-keys": [ 2, {
-        orderedKeys: [ `id` ],
-      }],
-      "sort-keys-custom-order/object-keys": [ 2, {
-        orderedKeys: [ `id` ],
-      }],
       "sort-vars": [ 2, {
         ignoreCase: true,
       }],
@@ -249,9 +323,6 @@ export default defineConfig(
       "no-unused-vars": 0,
       "no-useless-return": 0,
       "require-await": 0,
-      "sort-keys-custom-order/type-keys": [ 2, {
-        orderedKeys: [ `id` ],
-      }],
     },
   },
   {

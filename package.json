@@ -54,25 +54,25 @@
   },
   "homepage": "https://github.com/reediculous456/dayjs-business-days#readme",
   "dependencies": {
-    "dayjs": "^1.11.20"
+    "dayjs": "^1.11.21"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
-    "@eslint/js": "^9.39.4",
+    "@eslint/eslintrc": "^3.3.6",
+    "@eslint/js": "^9.34.9",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@swc/core": "^1.15.21",
+    "@swc/core": "^1.15.46",
     "@types/jest": "^30.0.0",
     "audit-ci": "^7.1.0",
-    "eslint": "^9.39.4",
+    "eslint": "^9.34.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-import-quotes": "^0.0.1",
-    "eslint-plugin-sort-keys-custom-order": "^2.2.1",
+    "eslint-plugin-perfectionist": "^5.10.0",
     "husky": "^9.1.7",
-    "jest": "^30.3.0",
-    "npm-check-updates": "^19.6.5",
-    "ts-jest": "^29.4.6",
+    "jest": "^30.4.2",
+    "npm-check-updates": "^23.0.0",
+    "ts-jest": "^29.4.12",
     "tsup": "^8.5.1",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.57.2"
+    "typescript-eslint": "^8.65.0"
   }
 }
